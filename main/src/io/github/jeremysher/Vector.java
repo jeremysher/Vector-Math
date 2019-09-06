@@ -3,23 +3,28 @@ package io.github.jeremysher;
 public class Vector {
 	private double[] set;
 
+	//2-d vector with 2 components
 	public Vector(double x, double y) {
 		set = new double[] {x, y};
 	}
 	
+	//3-d vector with 3 components
 	public Vector(double x, double y, double z) {
 		set = new double[] {x, y, z};
 	}
 	
-	//make Angle class to implement this constructor
-	/*public Vector(double m, double theta) {
-		set = new double[] {m * Math.cos(theta), m * Math.sin(theta)};
-	}*/
+	//2-d vector from magnitude and angle
+	public Vector(double m, Angle theta) {
+		double angle = theta.getRadians();
+		set = new double[] {m * Math.cos(angle), m * Math.sin(angle)};
+	}
 	
+	//n-dimensional vector from length n set of components
 	public Vector(double[] set) {
 		this.set = set;
 	}
 	
+	//vector addition; resultant vector has length of greatest dimensional vector
 	public static Vector add(Vector a, Vector b) {
 		int length = Math.max(a.getSize(), b.getSize());
 		double[] s = new double[length];
@@ -30,13 +35,20 @@ public class Vector {
 		return new Vector(s);
 	}
 	
-	public static Vector dot(Vector a, Vector b) {
+	//vector dot product
+	public static double dot(Vector a, Vector b) {
 		int length = Math.min(a.getSize(), b.getSize());
-		double[] s = new double[length];
-		for (int i = 0; i < length; i++) {
-			s[i] = a.getComponent(i) * b.getComponent(i);
-		}
-		return new Vector(s);
+		double sum = 0;
+		for (int i = 0; i < length; i++)
+			sum = a.getComponent(i) * b.getComponent(i);
+		return sum;
+	}
+	
+	public Angle getAngle() {
+		if (set.length == 2)
+			return new Angle(Math.atan2(set[1], set[0]));
+		else
+			return null;
 	}
 	
 	public double getComponent(int index) {
