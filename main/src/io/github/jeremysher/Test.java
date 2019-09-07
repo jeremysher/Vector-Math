@@ -3,9 +3,10 @@ package io.github.jeremysher;
 public class Test {
 
 	public static void main(String[] args) {
-		Vector a = new Vector(2, 3);
-		Vector b = new Vector(1, -2, 4);
-		System.out.println(Angle.restrictRange(17.99999 * Math.PI));
+		Vector p1 = new Vector(10, 3);
+		Vector p2 = new Vector(0, 0);
+		Vector u = Vector.makeUnitVector(p1, p2);
+		System.out.println(u);
 		
 	}
 
