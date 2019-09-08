@@ -29,9 +29,10 @@ public class Vector {
 	}
 	
 	public Vector scale(double s) {
+		double[] newComps = new double[set.length];
 		for (int i = 0; i < set.length; i++)
-			set[i] *= s;
-		return this;
+			newComps[i] = set[i] * s;
+		return new Vector(newComps);
 	}
 	
 	//vector addition; resultant vector has length of greatest dimensional vector
@@ -55,6 +56,10 @@ public class Vector {
 			s[i] = sum;
 		}
 		return new Vector(s);
+	}
+	
+	public static Vector difference(Vector a, Vector b) {
+		return(sum(b, a.scale(-1)));
 	}
 	
 	//vector dot product
@@ -82,9 +87,15 @@ public class Vector {
 		}
 	}
 	
+	//unit vector from point p to point q
 	public static Vector makeUnitVector(Vector p, Vector q) {
-		Vector displacement = Vector.sum(q, p.scale(-1));
+		Vector displacement = Vector.difference(p, q);
 		return displacement.scale(1 / displacement.getMagnitude());
+	}
+	
+	//distance from point p to point q
+	public static double distance(Vector p, Vector q) {
+		return difference(p, q).getMagnitude();
 	}
 	
 	//only for 2-d vectors
@@ -117,10 +128,10 @@ public class Vector {
 	
 	//want to format doubles so that I don't get ugly numbers
 	public String toString() {
-		String str = "[";
+		String str = "(";
 		for (int i = 0; i < set.length - 1; i++)
 			str += set[i] + ", ";
-		str += set[set.length - 1] + "]";
+		str += set[set.length - 1] + ")";
 		return str;
 	}
 	
