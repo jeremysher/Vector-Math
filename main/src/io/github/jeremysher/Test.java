@@ -3,7 +3,27 @@ package io.github.jeremysher;
 public class Test {
 
 	public static void main(String[] args) {
+		
+		Vector p1 = new Vector(-1, 0);
+		Vector p2 = new Vector(1, 0);
 
+		VectorField f = new VectorField() {
+			public Vector function(Vector point) {
+				Vector u1 = Vector.makeUnitVector(point, p1);
+				Vector u2 = Vector.makeUnitVector(point, p2);
+				double mag1 = -1 / Math.pow(Vector.distance(point, p1), 2);
+				double mag2 = 1 / Math.pow(Vector.distance(point, p2), 2);
+				Vector v1 = u1.scale(mag1);
+				Vector v2 = u2.scale(mag2);
+				return Vector.sum(v1, v2);
+			}
+		};
+		
+		System.out.println(f.div(new Vector(-0.5, 0.5)));
+		
+	}
+	
+	public static void orbit() {
 		Vector center = new Vector(0, 0);
 		Vector p = new Vector(4, 0);
 		Vector v = new Vector(0, 0.8);

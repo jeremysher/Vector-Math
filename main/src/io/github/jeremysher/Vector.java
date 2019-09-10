@@ -98,6 +98,15 @@ public class Vector {
 		return difference(p, q).getMagnitude();
 	}
 	
+	public Vector replaceComponent(int index, double n) {
+		double[] s = new double[set.length];
+		for (int i = 0; i < set.length; i++) {
+			if (i == index) s[i] = n;
+			else s[i] = set[i];
+		}
+		return new Vector(s);
+	}
+	
 	//only for 2-d vectors
 	public Angle getAngle() {
 		if (set.length == 2)
