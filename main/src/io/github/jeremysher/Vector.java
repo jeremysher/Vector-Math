@@ -67,7 +67,7 @@ public class Vector {
 		int length = Math.min(a.getSize(), b.getSize());
 		double sum = 0;
 		for (int i = 0; i < length; i++)
-			sum = a.getComponent(i) * b.getComponent(i);
+			sum += a.getComponent(i) * b.getComponent(i);
 		return sum;
 	}
 	

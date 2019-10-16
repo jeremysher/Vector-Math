@@ -18,15 +18,15 @@ public class Test {
 				return Vector.sum(v1, v2);
 			}
 		};
-		
-		System.out.println(f.div(new Vector(-0.5, 0.5)));
+		orbit();
+		//System.out.println(f.div(new Vector(-0.5, 0.5)));
 		
 	}
 	
 	public static void orbit() {
 		Vector center = new Vector(0, 0);
 		Vector p = new Vector(4, 0);
-		Vector v = new Vector(0, 0.8);
+		Vector v = new Vector(0, 0.3);
 		VectorField a = new VectorField() {
 			public Vector function(Vector point) {
 				Vector u = Vector.makeUnitVector(point, center);
@@ -34,8 +34,8 @@ public class Test {
 				return u.scale(mag);
 			}
 		};
-		double dt = 0.2;
-		double tf = 200;
+		double dt = 0.05;
+		double tf = 30;
 		
 		for (double t = 0; t <= tf; t += dt) {
 			System.out.println(p);
