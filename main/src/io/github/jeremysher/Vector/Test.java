@@ -1,4 +1,4 @@
-package io.github.jeremysher;
+package io.github.jeremysher.Vector;
 
 public class Test {
 
