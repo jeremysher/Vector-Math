@@ -1,4 +1,4 @@
-package io.github.jeremysher.Vector;
+package io.github.jeremysher.vector;
 
 public class Vector {
 	private double[] set;

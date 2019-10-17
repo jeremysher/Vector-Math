@@ -1,4 +1,4 @@
-package io.github.jeremysher.Vector;
+package io.github.jeremysher.vector;
 
 //not sure if i'll keep this class either
 public class Point extends Vector {
