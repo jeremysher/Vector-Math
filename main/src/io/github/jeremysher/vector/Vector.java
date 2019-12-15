@@ -126,6 +126,18 @@ public class Vector {
 		return set.length > index ? set[index] : 0;
 	}
 	
+	public double x() {
+		return set.length > 0 ? set[0] : 0;
+	}
+	
+	public double y() {
+		return set.length > 1 ? set[1] : 0;
+	}
+	
+	public double z() {
+		return set.length > 2 ? set[2] : 0;
+	}
+	
 	public int getSize() {
 		return set.length;
 	}

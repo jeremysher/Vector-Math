@@ -18,8 +18,8 @@ public class Test {
 				return Vector.sum(v1, v2);
 			}
 		};
-		orbit();
-		//System.out.println(f.div(new Vector(-0.5, 0.5)));
+		//orbit();
+		System.out.println(f.div(new Vector(-0.5, 0.5)));
 		
 	}
 	

@@ -8,21 +8,36 @@ public abstract class VectorField {
 	
 	//divergence of vector field at point p
 	public double div(Vector p) {
-		Vector f = function(p);
-		if (p.getSize() == f.getSize()) {
+		if (p.getSize() == function(p).getSize()) {
 			double sum = 0;
-			for (int i = 0; i < p.getSize(); i++) {
-				double pVal = p.getComponent(i);
-				double p1 = pVal - delta;
-				double p2 = pVal +  delta;
-				double f1 = function(p.replaceComponent(i, p1)).getComponent(i);
-				double f2 = function(p.replaceComponent(i, p2)).getComponent(i);
-				sum += (f2 - f1) / (2 * delta);
-			}
+			for (int i = 0; i < p.getSize(); i++)
+				sum += part(p, i, i);
 			return sum;
 		} else {
 			return 0;
 		}
+	}
+	
+	//curl of a vector field at point p
+	public Vector curl(Vector p) {
+		if (p.getSize() <= 3 && p.getSize() <= 3) {
+			double x = part(p, 2, 1) - part(p, 1, 2);
+			double y = part(p, 0, 2) - part(p, 2, 0);
+			double z = part(p, 1, 0) - part(p, 0, 1);
+			return new Vector(x, y, z);
+		} else {
+			return new Vector(0, 0, 0);
+		}
+	}
+	
+	//partial derivative at point p
+	public double part(Vector p, int topComp, int bottomComp) {
+		double pVal = p.getComponent(bottomComp);
+		double p1 = pVal - delta;
+		double p2 = pVal + delta;
+		double f1 = function(p.replaceComponent(bottomComp, p1)).getComponent(topComp);
+		double f2 = function(p.replaceComponent(bottomComp, p2)).getComponent(topComp);
+		return (f2 - f1) / (2 * delta);
 	}
 	
 }
